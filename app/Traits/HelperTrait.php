@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Laravel\Sanctum\Exceptions\MissingAbilityException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait HelperTrait
@@ -42,12 +42,15 @@ trait HelperTrait
     }
     public function apiExceptions($req,$exe)
     {
+
         if ($this->isModel($exe))
             return $this->responseModel();
 
 
         if ($this->isHttp($exe))
             return $this->responseHttp();
+        if ($this->isUnAuthorized($exe))
+            return $this->responseUnAuthorized();
 
 
         return parent::render($req, $exe);
@@ -55,8 +58,14 @@ trait HelperTrait
   protected function isModel($exe){
         return $exe instanceof ModelNotFoundException;
 }
+ protected function isUnAuthorized($exe){
+        return $exe instanceof  MissingAbilityException;
+}
+protected function responseUnAuthorized(){
+        $this->response_has_errors('should access as admin','unauthorized',Response::HTTP_UNAUTHORIZED);
+}
 protected function responseModel(){
-        $this->response_has_errors('','this record not fount',Response::HTTP_NOT_FOUND);
+        $this->response_has_errors('','this model not found',Response::HTTP_NOT_FOUND);
 }
 
     protected function isHttp($exe)
@@ -66,7 +75,7 @@ protected function responseModel(){
 
     protected function responseHttp()
     {
-        $this->response_has_errors('','this route not fount',Response::HTTP_NOT_FOUND);
+        $this->response_has_errors('','this route not found',Response::HTTP_NOT_FOUND);
     }
 }
 

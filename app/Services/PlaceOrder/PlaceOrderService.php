@@ -77,13 +77,13 @@ class PlaceOrderService implements PlaceOrderServiceInterface
        foreach ($items as $item) {
         $product = Product::find($item['product_id']);
         $price = $product->price;
-        $data []= ['name' => $product->name,'sku' => $product->sku,'price' => $price,'qty' => $item['qty'],'stock' => $product->stock,'product_id' => $product->id];
+        $data []= ['name' => $product->name,'sku' => $product->sku,'price' => $price,'qty' => $item['qty'],'total' => $item['qty'] * $price,'stock' => $product->stock,'product_id' => $product->id];
        }
        $this->items =  $data;
     }
     private function calculate_order_total(){
 
-        $this->total = array_sum(\Arr::pluck($this->items, 'price'));
+        $this->total = array_sum(\Arr::pluck($this->items, 'total'));
     }
     private function link_order_items()
     {

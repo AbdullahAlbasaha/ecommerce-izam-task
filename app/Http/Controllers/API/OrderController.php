@@ -31,7 +31,12 @@ class OrderController extends Controller
         try {
             $order =  PlaceOrderServiceFacade::placeOrder($request);
         } catch (\Throwable $th) {
-            $this->response_has_errors($th->getMessage(),'failed to place order');
+            if($th instanceof \Illuminate\Http\Exceptions\HttpResponseException){
+                throw $th;
+            }else{
+
+                $this->response_has_errors($th->getMessage(),'failed to place order');
+            }
 
         }
         return response()->json(['data' => ['order_id' => $order->id],'message' => "succeed to place order number $order->id"],201);
