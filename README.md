@@ -7,7 +7,7 @@
 1. Run `php artisan key:generate` command.
 1. Copy key and paste in `.env` file Specifically `APP_KEY`.
 1. Set your database credentials in your `.env` file
-1. Run `php artisan migrate --db:seed` command. to migrate the database and run any seeders necessary.
+1. Run `php artisan migrate --seed` command. to migrate the database and run any seeders necessary.
 1. Run `php artisan serve` command .
 1. Use `localhost:8000` as url
 1. postman collection in path `storage\app\e-commerce izam.postman_collection.json`
