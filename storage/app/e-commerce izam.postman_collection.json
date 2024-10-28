@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "e8d34801-8be3-4beb-8b32-70b9053673c3",
+		"name": "e-commerce izam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6483323"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "display products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uri}}/products",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Dibbert",
+									"disabled": true
+								},
+								{
+									"key": "price_from",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "price_to",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "22|wGTld59F13lTbdNTQgDhhNZX1CATw07YKK650BCB8db3c9e7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "new product",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "5899das",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{uri}}/products",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "22|wGTld59F13lTbdNTQgDhhNZX1CATw07YKK650BCB8db3c9e7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"update ws product\",\r\n    \"sku\":\"5899das\",\r\n    \"stock\":30,\r\n    \"price\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uri}}/products/1001",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"products",
+								"1001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|YzYG7yXsSRVZg3ZwSv8EBAZi886LXqwxKTOM5dUC935e9e59",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uri}}/products/1001",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"products",
+								"1001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "place order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|UlPgpJunIPdGOZ2liMTNm1Zs4cRUiqPB0F0KRRy4ee61e574",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"items\":[\r\n    {\r\n        \"product_id\":7,\r\n         \"qty\":3\r\n    },\r\n    {\r\n        \"product_id\":3,\r\n         \"qty\":1\r\n    }\r\n]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uri}}/place-order",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"place-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uri}}/order-details/1",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"order-details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "display orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uri}}/order-details/1",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"order-details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "admin login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@izam.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{uri}}/admin-login",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"admin-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@izam.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{uri}}/user-login",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"user-login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "abdallah@izam.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "abdallah albasha",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{uri}}/register",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "uri",
+			"value": "localhost:8000/api",
+			"type": "default"
+		}
+	]
+}
